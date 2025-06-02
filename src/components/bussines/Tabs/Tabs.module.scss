@@ -1,0 +1,71 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  background-color: #f8f9fa;
+  padding: 0 5px;
+  border-bottom: 1px solid #dee2e6;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0;
+    margin-right: 2px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    position: relative;
+
+    svg:not(.pinButton svg) {
+      margin-right: 8px;
+      font-size: 1.1em;
+    }
+
+    &:hover:not(.tabs__item--active) {
+      color: #0056b3;
+      background-color: #e9ecef;
+    }
+
+    &--active {
+      color: #007bff;
+      background-color: #fff;
+      border-color: #dee2e6 #dee2e6 #fff;
+      font-weight: 500;
+      border-top: 2px solid #007bff;
+    }
+
+    .pinButton {
+      background: transparent;
+      border: none;
+      padding: 4px 6px;
+      margin-left: 10px;
+      cursor: pointer;
+      color: #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+
+      svg {
+        font-size: 0.9em;
+        margin-right: 0;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &--active {
+        color: #007bff;
+        &:hover {
+          color: #0056b3;
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,11 @@ import {
   FaCogs,
   FaQuestionCircle,
   FaClipboardList,
+  FaShoppingCart,
+  FaCalendarAlt,
+  FaBell,
+  FaUsers,
+  FaFileInvoiceDollar,
 } from "react-icons/fa";
 
 export const tabItems = [
@@ -80,6 +85,41 @@ export const tabItems = [
     title: "Tasks",
     to: "/tasks",
     icon: FaClipboardList,
+    pinned: false,
+  },
+  {
+    id: "shop",
+    title: "Shop",
+    to: "/shop",
+    icon: FaShoppingCart,
+    pinned: false,
+  },
+  {
+    id: "calendar",
+    title: "Calendar",
+    to: "/calendar",
+    icon: FaCalendarAlt,
+    pinned: false,
+  },
+  {
+    id: "notifications",
+    title: "Notifications",
+    to: "/notifications",
+    icon: FaBell,
+    pinned: true,
+  },
+  {
+    id: "team",
+    title: "Team",
+    to: "/team",
+    icon: FaUsers,
+    pinned: false,
+  },
+  {
+    id: "billing",
+    title: "Billing",
+    to: "/billing",
+    icon: FaFileInvoiceDollar,
     pinned: false,
   },
 ];

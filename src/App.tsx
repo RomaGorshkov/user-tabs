@@ -13,7 +13,7 @@ const App: React.FC = () => {
             <Route
               key={tab.id}
               index={tab.to === "/"}
-              path={tab.to === "/" ? undefined : tab.to.substring(1)}
+              path={tab.to === "/" ? "" : tab.to.substring(1)}
               element={<div>{tab.title} Page</div>}
             />
           ))}

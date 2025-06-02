@@ -1,30 +1,35 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaThumbtack } from "react-icons/fa";
+import { FaThumbtack, FaQuestionCircle } from "react-icons/fa";
 
-import { tabItems as initialTabItems } from "../../../mockData/mockData";
 import type { TabItem } from "../../../types";
-import { sortTabs } from "../../../utils/tabsFilter";
+import {
+  getInitialTabsStateFromStorage,
+  saveTabsStateToStorage,
+} from "../../../utils/tabsStorage";
 
 import styles from "./Tabs.module.scss";
 
 const Tabs: React.FC = () => {
-  const [currentTabs, setCurrentTabs] = React.useState<TabItem[]>(() =>
-    sortTabs([...initialTabItems])
+  const [currentTabs, setCurrentTabs] = React.useState<TabItem[]>(
+    getInitialTabsStateFromStorage
   );
+
+  React.useEffect(() => {
+    saveTabsStateToStorage(currentTabs);
+  }, [currentTabs]);
 
   const handleTogglePin = (tabId: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    setCurrentTabs((prevTabs) => {
-      const updatedTabs = prevTabs.map((singleTab) =>
+    setCurrentTabs((prevTabs) =>
+      prevTabs.map((singleTab) =>
         singleTab.id === tabId
           ? { ...singleTab, pinned: !singleTab.pinned }
           : singleTab
-      );
-      return sortTabs(updatedTabs);
-    });
+      )
+    );
   };
 
   return (
@@ -41,7 +46,11 @@ const Tabs: React.FC = () => {
               } ${item.pinned ? styles["tabs__item--pinned"] : ""}`
             }
           >
-            {IconComponent && <IconComponent />}
+            {typeof IconComponent === "function" ? (
+              <IconComponent />
+            ) : (
+              <FaQuestionCircle title="Icon not found" />
+            )}
             <span className={styles.tabs__title}>{item.title}</span>
             <button
               type="button"
@@ -51,13 +60,13 @@ const Tabs: React.FC = () => {
               }`}
               aria-label={
                 item.pinned
-                  ? `Unpin tab ${item.title}`
-                  : `Pin tab ${item.title}`
+                  ? `Відкріпити таб ${item.title}`
+                  : `Закріпити таб ${item.title}`
               }
               title={
                 item.pinned
-                  ? `Unpin tab ${item.title}`
-                  : `Pin tab ${item.title}`
+                  ? `Відкріпити таб ${item.title}`
+                  : `Закріпити таб ${item.title}`
               }
             >
               <FaThumbtack />
